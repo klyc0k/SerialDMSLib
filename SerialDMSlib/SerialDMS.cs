@@ -15,7 +15,7 @@ namespace SerialDMSlib
      * Created: Dec. 2013
      * 
      * This library implements basic functions to control a Dynamic Message Sign device via RS232 Serial port
-     * The device must be able to accessed by Simple Network Management Protocol in application layer, under NTCIP 1201 standard 
+     * The device must be able to accessed by Simple Network Management Protocol in application layer, under NTCIP 1203 standard 
      *      
      */
     public enum DataMode { Text, Hex }
