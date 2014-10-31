@@ -12,4 +12,4 @@ Feel free to apply and extend for any other device control issues.
 The SNMP packets are handled by SnmpSharpNet library (http://www.snmpsharpnet.com/).
 SeralSNMP only focus on SNMP communications through serial ports.
 
-Please let me know for any comments or suggestions, thanks!
+Please let me know for any comment or suggestion, thanks!
