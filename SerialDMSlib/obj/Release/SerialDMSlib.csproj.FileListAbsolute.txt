@@ -1,0 +1,6 @@
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\obj\Release\ResolveAssemblyReference.cache
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\bin\Release\SerialDMSlib.dll
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\bin\Release\SerialDMSlib.pdb
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\bin\Release\SnmpSharpNet.dll
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\obj\Release\SerialDMSlib.dll
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\obj\Release\SerialDMSlib.pdb

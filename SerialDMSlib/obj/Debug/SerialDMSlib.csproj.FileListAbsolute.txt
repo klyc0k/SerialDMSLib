@@ -1,0 +1,12 @@
+D:\Projects\DDOT\SerialPortDMS\SerialDMSlib\SerialDMSlib\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\DDOT\SerialPortDMS\SerialDMSlib\SerialDMSlib\bin\Debug\SerialDMSlib.dll
+D:\Projects\DDOT\SerialPortDMS\SerialDMSlib\SerialDMSlib\bin\Debug\SerialDMSlib.pdb
+D:\Projects\DDOT\SerialPortDMS\SerialDMSlib\SerialDMSlib\bin\Debug\SnmpSharpNet.dll
+D:\Projects\DDOT\SerialPortDMS\SerialDMSlib\SerialDMSlib\obj\Debug\SerialDMSlib.dll
+D:\Projects\DDOT\SerialPortDMS\SerialDMSlib\SerialDMSlib\obj\Debug\SerialDMSlib.pdb
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\bin\Debug\SerialDMSlib.dll
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\bin\Debug\SerialDMSlib.pdb
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\bin\Debug\SnmpSharpNet.dll
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\obj\Debug\ResolveAssemblyReference.cache
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\obj\Debug\SerialDMSlib.dll
+D:\DDOTProj\SerialDMSlib\SerialDMSlib\obj\Debug\SerialDMSlib.pdb
