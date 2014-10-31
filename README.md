@@ -10,6 +10,6 @@ The SerialSNMP class provides an interface for building, sending,
 and receiving SNMP (Simple Network Management Protocol) command streams through serial ports. 
 Feel free to apply and extend for any other device control issues.
 The SNMP packets are handled by SnmpSharpNet library (http://www.snmpsharpnet.com/).
-SeralSNMP only focus on SNMP communications through serial ports.
+SeralSNMPLib only focus on SNMP communications through serial ports.
 
 Please let me know for any comment or suggestion, thanks!
