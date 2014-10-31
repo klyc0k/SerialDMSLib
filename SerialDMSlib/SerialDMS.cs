@@ -25,7 +25,7 @@ namespace SerialDMSlib
         private string _portName = "COM1";
         private string _community = "public";
         private string _owner = "DDOT ITS";
-        private int _responseDelay = 800;
+        private int _responseDelay = 800; // a delay is required to ensure the full stream is transmitted
         public delegate void logwriterFunction(string text);
         private logwriterFunction _logwriter = null;
 
@@ -57,26 +57,6 @@ namespace SerialDMSlib
             _responseDelay = responseDelay;
             _logwriter = logwriter;
         }
-
-        //// Open Serial Connection
-        //public int OpenConnection()
-        //{
-        //    try
-        //    {
-        //        _snmp.Open();
-        //    }
-        //    catch
-        //    {
-        //        return -1;
-        //    }
-        //    return 1;
-        //}
-
-        //// Close Serial Connection
-        //public void Close()
-        //{
-        //    _snmp.Close();
-        //}
 
         // Get current message
         public string GetMessage()

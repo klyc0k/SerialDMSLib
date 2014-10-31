@@ -9,6 +9,13 @@ using SnmpSharpNet;
 
 namespace SerialDMSlib
 {
+    /* 
+    * Author: Kevin Lu (kevinlu at vt.edu)
+    * Created: Dec. 2013
+    * 
+    * This code implemented transmitting and receiving SNMP packets via serial port
+    *      
+    */
     public class SerialSNMP
     {
         enum SendRequestType {GET, SET}
@@ -32,10 +39,11 @@ namespace SerialDMSlib
             ResponseDelay = responseDelay;
             Community = community;
             PortName = portName;
-            
-            //_comport.DataReceived += new SerialDataReceivedEventHandler(port_DataReceived);
         }
 
+        /// <summary>
+        /// Open a connection to the target device
+        /// </summary>
         public void Open()
         {
             _comport = new SerialPort();
@@ -78,11 +86,6 @@ namespace SerialDMSlib
             SnmpV1Packet v1 = new SnmpV1Packet();
             v1.decode(exresult, exresult.Length);
 
-            //if (result == null)
-            //{
-            //    return new KeyValuePair<Oid, AsnType>(new Oid(oid), null);
-            //}
-
             KeyValuePair<Oid, AsnType> kvp = new KeyValuePair<Oid, AsnType>(v1.Pdu.VbList[oid].Oid, v1.Pdu.VbList[oid].Value);
 
             return kvp;
@@ -122,6 +125,10 @@ namespace SerialDMSlib
             return v1;            
         }
 
+        /// <summary>
+        /// Transmit the SNMP packets
+        /// </summary>
+        /// <param name="snmppacket"></param>
         protected void Transmit(SnmpV1Packet snmppacket){
             byte [] s = snmppacket.encode();
             byte [] transbytes = new byte[s.Length + 7]; // head 4 and tail 3
@@ -152,91 +159,45 @@ namespace SerialDMSlib
                 transbytes[i + s.Length + 4] = crcbytes[i];
             }
             
-            // The last byte is flag
+            // The last byte is the flag
             transbytes[transbytes.Length - 1] = 0x7e;
-
-            //for (int i = 0; i < transbytes.Length; i++)
-            //{
-            //    Console.Write("{0:X}", transbytes[i]);
-            //    Console.Write(" ");
-            //}
-
 
             _comport.Write(transbytes, 0, transbytes.Length);
         }
 
+        /// <summary>
+        /// Receive stream from serial port and recognize as a packet
+        /// </summary>
+        /// <returns></returns>
         protected byte[] Receive()
         {
             if (!_comport.IsOpen) return null;
 
             List<byte> sb = new List<byte>();
             _comport.Encoding = Encoding.ASCII;
-            
-            bool flag = false;
-
-            //byte[] lasttwo = new byte[2];           
+                   
             while (_comport.BytesToRead > 0)
             {
                 byte bt = (byte)_comport.ReadByte();
-                //Console.WriteLine("{0:X}",bt);
                 sb.Add(bt);                
-                //if (bt == 0x7e)
-                //{
-                //    if (flag) { break; }
-                //    else { flag = true; }
-                //}
-                Thread.Sleep(50);
-                
+                Thread.Sleep(50);                
             }
-            //int bytes = _comport.BytesToRead;
-            //// Create a byte array buffer to hold the incoming data
-            //byte[] buffer = new byte[bytes];
-            //// Read the data from the port and store it in our buffer
-            //_comport.Read(buffer, 0, bytes);
-
-            //return buffer;
             return sb.ToArray();
         }
 
+        /// <summary>
+        /// Process the data stream and identify the SNMP packet
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private byte[] extract_SNMP(byte [] data)
-        {
-            //Console.WriteLine("Received:");
-            //for (int i = 0; i < data.Length; i++)
-            //{
-            //    Console.Write("{0:X}",data[i]);
-            //    Console.Write(" ");
-            //}
+        {            
             byte [] snmpdata = new byte[data.Length - 7];
             for (int i = 0; i < snmpdata.Length; i++)
             {
                 snmpdata[i] = data[i + 4];
             }
             return snmpdata;
-        }
-
-        private void port_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            // If the com port has been closed, do nothing
-            if (!_comport.IsOpen) return;
-
-            // This method will be called when there is data waiting in the port's buffer
-
-            // Obtain the number of bytes waiting in the port's buffer
-            int bytes = _comport.BytesToRead;
-
-            // Create a byte array buffer to hold the incoming data
-            byte[] buffer = new byte[bytes];
-
-            // Read the data from the port and store it in our buffer
-            _comport.Read(buffer, 0, bytes);
-
-            // Show the user the incoming data in hex format
-            //Log(LogMsgType.Incoming, ByteArrayToHexString(buffer));
-
-            //Console.WriteLine("Received!");
-            //foreach (byte bt in buffer){
-            //    Console.WriteLine("{0:X}", bt);
-            //}
         }
 
         private byte[] HexStringToByteArray(string s)
